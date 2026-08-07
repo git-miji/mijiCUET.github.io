@@ -1,113 +1,95 @@
-# mijicuet.github.io
+# Grade 3 Math — Practice &amp; Test
 
-Personal research site for **Md Kausar Hamid Miji** — PhD researcher in Nano Science and
-Nanoengineering (South Dakota Mines), working in nanophotonics and plasmonics with
-FDTD modelling in Meep and Tidy3D.
+Live at **<https://mijicuet.github.io>**
 
-Live at <https://mijicuet.github.io>
-
----
-
-## Stack
-
-Dependency-free: hand-written semantic HTML, one modern CSS file, one vanilla JS file.
-No framework, no build step, no npm. GitHub Pages serves it as-is.
-
-| Path | Purpose |
-|------|---------|
-| `assets/css/main.css` | Entire design system — tokens, layout, components, print styles |
-| `assets/js/main.js` | Nav, theme toggle, scroll reveal, gallery filters, hero canvas |
-| `assets/img/` | Favicon and Open Graph card *(generated for this site)* |
-| `assets/figures/` | **Simulation figures — placeholders, replace with your own** |
-| `math/` | Grade 3 Math practice & test app (self-contained) |
-| `IMAGE-CREDITS.md` | Provenance of every image on the site |
-| `sitemap.xml`, `robots.txt`, `site.webmanifest` | SEO and PWA metadata |
-
-### Features
-
-- Responsive from 320 px to ultrawide; no horizontal scroll
-- Light/dark theme, remembered in `localStorage`
-- Accessibility: skip link, landmarks, visible focus rings, `aria-current`, keyboard nav
-- `prefers-reduced-motion` honoured — the hero animation renders one static frame
-- Hero canvas pauses off-screen and when the tab is hidden
-- SEO: canonical URLs, Open Graph + Twitter cards, JSON-LD `Person`, sitemap
-- Print stylesheet
+A single self-contained web page for Grade 3 mathematics practice and timed testing.
+One HTML file, no dependencies, no build step, no backend.
 
 ---
 
-## Page inventory
+## What it does
 
-| Page | Purpose |
-|------|---------|
-| `index.html` | Home — hero, research focus, toolchain, selected work |
-| `research.html` | Five research threads, methodology workflow |
-| `simulations.html` | Filterable FDTD study gallery |
-| `publications.html` | Papers, preprints, talks, theses *(scaffolded)* |
-| `projects.html` | ML/modelling projects + the Grade 3 Math app |
-| `Work_Experience.html` | Career timeline |
-| `about.html` | Biography and full skills matrix |
-| `leadership.html` | Fellowships, awards, service |
-| `contact.html` | Contact details and message form |
-| `404.html` | Not-found page |
-| `math/index.html` | Grade 3 Math practice & test engine |
-| `GHCNd/project_ghcnd.html` · `SysID/index.html` · `Vulnerable_and_outdated_Components/index.html` | Project overviews |
-| `hero_banner.html` | Legacy URL — redirects to home |
+**Five difficulty levels**
 
-The two Jupyter exports keep their generated markup, with a slim "back to project" bar added.
+Beginner → Developing → Intermediate → Advanced → **Supreme**
+
+**Four subjects**
+
+| Subject | Contents |
+|---------|----------|
+| Everything | Arithmetic + geometry, plus Supreme problems at levels 4–5 (like a full exam) |
+| Arithmetic | Operations, place value, fractions, time, money, measurement, data |
+| Geometry | All nine chapters: shapes, angles, quadrilaterals, symmetry, perimeter, area, partitioning, 3D solids, competition geometry |
+| Supreme only | Competition problems only (needs level 4 or 5) |
+
+**Two modes, both timed**
+
+- **Practice** — count-up stopwatch, unlimited questions, instant feedback and a hint on
+  every Supreme problem. The question pool extends itself automatically, so it never runs out.
+- **Test** — countdown timer, fixed length, question palette for jumping around, auto-submits
+  at 0:00, then a score with a per-topic breakdown and a full answer review.
 
 ---
 
-## The Grade 3 Math app (`/math/`)
+## The question bank
 
-A self-contained practice and testing tool — one HTML file, no dependencies.
+**151 generators** producing 69 distinct topics:
 
-- **151 question generators**: 44 arithmetic, 69 geometry (all nine curriculum chapters),
-  38 Math Olympiad.
-- **Five levels**: Beginner → Developing → Intermediate → Advanced → **Olympiad**.
-- **Two modes, both timed**: Practice (count-up stopwatch, unlimited questions, instant
-  feedback and hints) and Test (countdown, fixed length, auto-submit, scored review with a
-  per-topic breakdown).
-- **Subjects**: Everything · Arithmetic · Geometry · Olympiad only.
-- Every question is generated in the browser, so no two attempts are the same.
+| Group | Generators |
+|-------|-----------|
+| Arithmetic | 36 |
+| Curriculum gap-fillers (length, properties of operations, line plots) | 8 |
+| Geometry (9 chapters) | 69 |
+| Supreme / competition | 38 (25 arithmetic, 13 geometry) |
+
+Every question is generated **fresh in the browser**, so no two attempts are ever the same.
+
+Supreme problems follow the style of Math Kangaroo (Grades 3–4), MOEMS and Noetic:
+handshake counting, Gauss sums, sums of odd numbers, digit puzzles, page-numbering,
+last-digit cycles, day-of-week arithmetic, frog-on-stairs, magic squares, working backwards,
+age and balance problems, coin combinations, remainders, rates, averages, painted cubes,
+counting squares and rectangles in grids, grid diagonals, toothpick figures, staircase
+perimeters, paper folding, tiling and optimisation.
+
+### Originality and correctness
 
 All problems are **original and generated by algorithm** — nothing is copied from any
-textbook. Every Olympiad formula (handshakes, Gauss sums, painted cube, squares in a grid,
-grid diagonals, coin combinations, clock angles…) is verified against brute-force
-computation before shipping.
+textbook. The topic coverage was derived by scanning a library of 31 Grade 3 textbooks for
+*which subjects they teach*, not by extracting their questions.
+
+Every Supreme formula is verified against independent brute-force computation before
+shipping: C(n,2), Gauss sums, coin-change counts, page-digit totals, painted-cube identities
+(which must sum to n³), squares-in-a-grid (1, 5, 14, 30), rectangles-in-a-grid, the
+m + n − gcd(m,n) diagonal rule, clock angles and Fibonacci stair-climbing.
+
+The full bank is swept for structural errors on every change — most recently **48,000
+generated questions** across every subject × level, all well-formed and answerable.
 
 ---
 
-## Replacing the placeholder simulation figures
+## Security
 
-The gallery ships with six watermarked placeholders so the layout is visible. To use your own:
+The app was security-tested; findings and fixes are documented in **[SECURITY.md](SECURITY.md)**.
 
-1. Export as PNG (roughly 4:3, ≥1200 px wide).
-2. Save into `assets/figures/`, overwriting the matching placeholder:
+Headlines: two XSS vulnerabilities and two answer-integrity flaws were found and fixed; there
+are no dependencies, no network calls, no cookies and no stored data; the page ships a
+hash-pinned Content-Security-Policy with no `unsafe-inline` or `unsafe-eval`.
 
-   | File | Study |
-   |------|-------|
-   | `fig-nearfield-dimer.png` | Nanoparticle dimer hot-spots |
-   | `fig-lspr-spectra.png` | LSPR spectral decomposition |
-   | `fig-metasurface-spectra.png` | Metasurface Fano response |
-   | `fig-waveguide-mode.png` | Hybrid waveguide mode |
-   | `fig-convergence.png` | Convergence &amp; resolution study |
-   | `fig-parameter-sweep.png` | Design-space parameter sweep |
+**Nothing a student types ever leaves their browser.**
 
-3. Edit that card's heading, description, `alt` text and `<dl class="specs">` in `simulations.html`.
-4. Delete the dashed "Note —" box at the top of `simulations.html` once all are replaced.
-
-To **add** a study, copy an `<article class="card ...">` block and set `data-tags`
-(`plasmonics`, `metasurface`, `waveguide`, `method`, `meep`, `tidy3d`).
+> ⚠️ If you edit `index.html`, the CSP script/style hashes must be recomputed or the browser
+> will refuse to run the page. The one-shot snippet is in SECURITY.md.
 
 ---
 
-## Things worth updating
+## Files
 
-- [ ] Replace the six placeholder figures in `assets/figures/`
-- [ ] Add real publications, preprints and talks
-- [ ] Add Google Scholar / ORCID / LinkedIn links (`publications.html`, `contact.html`)
-- [ ] Confirm the **M.S. Electrical Engineering** year in `about.html` (marked `[add year]`)
-- [ ] Add a downloadable CV PDF and link it from `about.html`
+| File | Purpose |
+|------|---------|
+| `index.html` | The entire application (~100 KB, self-contained) |
+| `SECURITY.md` | Security assessment and maintenance notes |
+| `robots.txt`, `sitemap.xml` | Search-engine metadata |
+| `.nojekyll` | Serve files as-is on GitHub Pages |
 
 ---
 
@@ -117,27 +99,31 @@ To **add** a study, copy an `<article class="card ...">` block and set `data-tag
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
+Or simply double-click `index.html` — it works straight from the filesystem.
+
 ## Deploying
 
 ```bash
-git add -A
-git commit -m "Rebuild site around nanophotonics research; add Grade 3 Math app"
-git push origin master
+git add -A && git commit -m "Update math app" && git push origin master
 ```
 
-> **Commit early.** Most of this site is new and untracked until you commit — an uncommitted
-> working tree can be lost. `git status` should be clean after you push.
+Then enable **Settings → Pages → Enforce HTTPS**.
 
 ---
 
-## Image provenance
+## Earlier versions of this repository
 
-Every image is either generated for this project or owned by the author — nothing is sourced
-from the internet. See **`IMAGE-CREDITS.md`**.
+This repo previously held a personal research portfolio. That site is preserved in git
+history and can be recovered at any time:
 
-The six plots in `assets/figures/` are **watermarked placeholders containing no real data**.
-Replace them before presenting the site as a record of research results.
+```bash
+git log --oneline            # find the commit
+git checkout <commit> -- .   # restore those files
+```
+
+The last commit containing the full portfolio is tagged in the history as
+*"Rebuild site around nanophotonics and plasmonics PhD research"*.
 
 ---
 
-© Md Kausar Hamid Miji. All decorative graphics generated for this site.
+© Md Kausar Hamid Miji. All problems and graphics generated for this project.
